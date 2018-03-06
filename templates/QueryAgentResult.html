@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>代理查询结果</title>
+  <link rel="stylesheet" href="{{ static_url("layui/css/layui.css") }}">
+</head>
+<body>
+ 
+<table id="AgentResult" lay-filter="test"></table>
+ 
+<script src="{{ static_url("layui/layui.js") }}"></script>
+<script>
+layui.use('table', function(){
+  var table = layui.table;
+  
+  table.render({
+    elem: '#AgentResult'
+    ,height: 315
+    ,url: '/queryAgent/' //数据接口
+    ,where: {AgentId:'{{AgentId}}', AgentName:'{{AgentName}}', AgentState: '0'}
+    ,method: 'post'
+    ,page: true //开启分页
+    ,cols: [[ //表头
+      {field: 'AgentId', title: '代理商账号', width:80, sort: true, fixed: 'left'}
+      ,{field: 'AgentName', title: '代理商名称', width:80}
+      ,{field: 'sex', title: '性别', width:80, sort: true}
+      ,{field: 'city', title: '城市', width:80} 
+      ,{field: 'sign', title: '签名', width: 177}
+      ,{field: 'experience', title: '积分', width: 80, sort: true}
+      ,{field: 'score', title: '评分', width: 80, sort: true}
+      ,{field: 'classify', title: '职业', width: 80}
+      ,{field: 'wealth', title: '财富', width: 135, sort: true}
+    ]]
+  });
+  
+});
+</script>
+</body>
+</html>
